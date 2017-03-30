@@ -4,7 +4,6 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   // res.send(req.query);
-
   // 游戏ID
   var gameId = req.query.gameid || 0 ;
   // 平台
@@ -14,9 +13,11 @@ router.get('/', function(req, res, next) {
   // 时间
   var time = (new Date()).getTime();
   
-  console.log(time);
   var list = [gameId,platform,error,time];
 
+  // EcDao.add(list, res, next);
+
+  console.log(list);
   res.send(list);
 
 });
