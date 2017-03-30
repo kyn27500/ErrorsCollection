@@ -6,8 +6,7 @@ var $util = require('../util/util');
 var $sql = require('./SqlMapping');
  
 // 使用连接池，提升性能
-// var pool  = mysql.createPool($util.extend({}, $conf.mysql));
-var pool  = mysql.createPool($conf.mysql);
+var pool  = mysql.createPool($util.extend({}, $conf.mysql));
 
 // 向前台返回JSON方法的简单封装
 var jsonWrite = function (res, ret) {
@@ -41,7 +40,26 @@ module.exports = {
 				connection.release();
 			});
 		});
-	}
+	},
 
+	delete: function (req, res, next) {
+		pool.getConnection(function(err, connection) {
+			// 建立连接，删除数据
+			connection.query($sql.delete, req, function(err, result) {
+				if(result) {
+					result = {
+						code: 200,
+						msg:'删除成功'
+					};    
+				}
+ 
+				// 以json形式，把操作结果返回给前台页面
+				jsonWrite(res, result);
+ 
+				// 释放连接 
+				connection.release();
+			});
+		});
+	}
 
 };
