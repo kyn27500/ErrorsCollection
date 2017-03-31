@@ -16,8 +16,8 @@ router.get('/', function(req, res, next) {
   
   var list = [gameId,platform,error,time];
 
-  // EcDao.add(list, res, next);
-  EcDao.delete([8], res, next);
+  EcDao.add(list, res, next);
+  // EcDao.delete([8], res, next);
 
   console.log(list);
   // res.send(list);

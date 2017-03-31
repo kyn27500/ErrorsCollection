@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>错误列表</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>错误列表</h1>
+    <!-- table -->
+    <table id="tbody" border="1" width="80%" align="center">
+    	<tr>
+    		<td width="15%">游戏ID</td>
+    		<td width="15%">平台</td>
+    		<td width="20%">时间</td>
+    		<td>错误</td>
+    	</tr>
+    </table>
   </body>
+
+	<script type="text/javascript">  
+		function drawTable(list){  
+		      
+		    for(var i=0;i<list.length;i++){  
+				var tr=document.createElement('tr');  
+				var td_gameid=document.createElement('td')  
+				var td_platform=document.createElement('td')  
+				var td_time=document.createElement('td') 
+				var td_error=document.createElement('td') 
+
+				td_gameid.innerHTML=list[i].gameid;  
+				td_platform.innerHTML=list[i].platform;  
+				td_time.innerHTML=list[i].time;  
+				td_error.innerHTML = list[i].error;
+				tr.appendChild(td_gameid);  
+				tr.appendChild(td_platform);  
+				tr.appendChild(td_time); 
+				tr.appendChild(td_error);  
+
+				var tbody=document.getElementById('tbody');  
+				tbody.appendChild(tr);  
+	        }  
+	    } 
+
+	    $.ajax({
+			type:"get",
+			url:"/",
+			async:true,
+			success:function(data){
+				drawTable(data)
+			}
+		});
+
+	</script>  
+
 </html>
