@@ -66,7 +66,7 @@ module.exports = {
 	queryByPage: function (req,callback) {
 		pool.getConnection(function(err, connection) {
 			// 建立连接，删除数据
-			connection.query($sql.queryByPage, req, function(err, result) {
+			connection.query($sql.queryByPage,req,function(err,result) {
 				callback(err,result)
 				// 释放连接 
 				connection.release();

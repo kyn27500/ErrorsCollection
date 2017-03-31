@@ -7,7 +7,8 @@
   <body>
     <h1>错误列表</h1>
     <!-- table -->
-    <table id="tbody" border="1" width="80%" align="center">
+
+    <table id="tbody" border="1" width="80%" align="center" style="table-layout: fixed">
     	<tr>
     		<td width="15%">游戏ID</td>
     		<td width="15%">平台</td>
@@ -17,8 +18,9 @@
     </table>
   </body>
 
-	<script type="text/javascript">  
-		function drawTable(list){  
+
+  <script type="text/javascript">
+    	function drawTable(list){  
 		      
 		    for(var i=0;i<list.length;i++){  
 				var tr=document.createElement('tr');  
@@ -38,18 +40,13 @@
 
 				var tbody=document.getElementById('tbody');  
 				tbody.appendChild(tr);  
-	        }  
-	    } 
+		    }  
+		} 
 
-	    $.ajax({
-			type:"get",
-			url:"/",
-			async:true,
-			success:function(data){
-				drawTable(data)
-			}
-		});
 
-	</script>  
+		var data = [{"id":9,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":10,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":11,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":12,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":13,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":14,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":15,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":16,"gameid":0,"platform":"unknown","error":"Test data","time":1490885641322},{"id":17,"gameid":5,"platform":"231","error":"sdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdf","time":121412419},{"id":18,"gameid":0,"platform":"unknown","error":"Test data","time":1490966187895}]
+
+		drawTable(data);
+    </script>
 
 </html>
