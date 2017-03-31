@@ -3,10 +3,10 @@
   <head>
     <title>错误列表</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+   
   </head>
   <body>
     <h1>错误列表</h1>
-    <!-- table -->
 
     <table id="tbody" border="1" width="80%" align="center" style="table-layout: fixed">
     	<tr>
@@ -20,6 +20,19 @@
 
 
   <script type="text/javascript">
+  // 		getData();
+  // 		function getData(data){
+  // 			$.ajax({
+		// 	type:"get",
+		// 	url:"/",
+		// 	async:true,
+		// 	success:function(data){
+		// 		console.log(data);
+		// 		drawTable(data)
+		// 	}
+		// });
+  // 		}
+
     	function drawTable(list){  
 		      
 		    for(var i=0;i<list.length;i++){  
@@ -43,10 +56,10 @@
 		    }  
 		} 
 
-
-		var data = [{"id":9,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":10,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":11,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":12,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":13,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":14,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":15,"gameid":5,"platform":"231","error":"131231","time":121412419},{"id":16,"gameid":0,"platform":"unknown","error":"Test data","time":1490885641322},{"id":17,"gameid":5,"platform":"231","error":"sdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdfsdfasfdasdfasdfasdf","time":121412419},{"id":18,"gameid":0,"platform":"unknown","error":"Test data","time":1490966187895}]
-
-		drawTable(data);
+			var data = <%= message[1].id %>;
+			console.log(data);
+			// drawTable(data);
+		
     </script>
 
 </html>

@@ -11,14 +11,17 @@ router.get('/', function(req, res, next) {
 	console.log(pageid);
 
 
-  EcDao.queryByPage([1,10],function(err,data){
+	EcDao.queryByPage([1,10],function(err,data){
+			
+		if (data){
+			// res.send(data);
+			// console.log(data[1]);
+			// console.log(JSON.stringify(data));
+			res.render('index',{message:data});
 
-  	if (data){
-  		res.render('index');
-  		// drawTable(data);
-  		// res.send(data);
- 	}
-  });
+
+		}
+	});
 
 });
 
