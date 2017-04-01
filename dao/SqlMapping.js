@@ -5,7 +5,7 @@ var user = {
 	// update:'update t_ec set name=?, age=? where id=?',
 	delete: 'delete from t_ec where id=?',
 	queryByType: 'select * from t_ec where gameid=?',
-	queryByPage: 'select * from t_ec limit ?,?'
+	queryByPage: 'select * from t_ec order by id desc limit ?,?'
 };
 
 module.exports = user;

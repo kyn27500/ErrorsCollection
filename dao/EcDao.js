@@ -42,20 +42,11 @@ module.exports = {
 		});
 	},
 
-	delete: function (req, res, next) {
+	delete: function (req, callback) {
 		pool.getConnection(function(err, connection) {
 			// 建立连接，删除数据
 			connection.query($sql.delete, req, function(err, result) {
-				if(result) {
-					result = {
-						code: 200,
-						msg:'删除成功'
-					};    
-				}
- 
-				// 以json形式，把操作结果返回给前台页面
-				jsonWrite(res, result);
- 
+				callback(err,result)
 				// 释放连接 
 				connection.release();
 			});

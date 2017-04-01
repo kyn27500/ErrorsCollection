@@ -13,8 +13,8 @@ local _isSending = false
 -- 地址 
 local _netData = {
 	url = "http://192.168.20.131:5000/ec",
-	platform = device.platform,
-	gameid = 0,
+	platform = device.platform.."/"..(DEBUG==2 and "debug" or "release"),
+	gameid = 5,
 }
 
 function Error:init(gameid)
@@ -51,6 +51,7 @@ function Error:send(url)
             Error:doNext()
         else
             print("readyState is:", self._network.readyState, "status is: ",self._network.status)
+            _isSending = false
         end
     end
 

@@ -7,59 +7,65 @@
   </head>
   <body>
     <h1>错误列表</h1>
-
+    <!-- <div id="tdata" data= <%= message %></div> -->
     <table id="tbody" border="1" width="80%" align="center" style="table-layout: fixed">
     	<tr>
-    		<td width="15%">游戏ID</td>
-    		<td width="15%">平台</td>
-    		<td width="20%">时间</td>
+    		<td width="50px" align="center">ID</td>
+    		<td width="40" align="center">游戏ID</td>
+    		<td width="100px" align="center">平台</td>
+    		<td width="100px" align="center">时间</td>
     		<td>错误</td>
+    		<td width="60px" align="center">删除</td>
     	</tr>
     </table>
   </body>
 
 
-  <script type="text/javascript">
-  // 		getData();
-  // 		function getData(data){
-  // 			$.ajax({
-		// 	type:"get",
-		// 	url:"/",
-		// 	async:true,
-		// 	success:function(data){
-		// 		console.log(data);
-		// 		drawTable(data)
-		// 	}
-		// });
-  // 		}
+<script type="text/javascript">
 
-    	function drawTable(list){  
-		      
-		    for(var i=0;i<list.length;i++){  
-				var tr=document.createElement('tr');  
-				var td_gameid=document.createElement('td')  
-				var td_platform=document.createElement('td')  
-				var td_time=document.createElement('td') 
-				var td_error=document.createElement('td') 
+	function getLocalTime(nS) {     
+	   return new Date(parseInt(nS)).toLocaleString().replace(/:\d{1,2}$/,' ');     
+	}  
 
-				td_gameid.innerHTML=list[i].gameid;  
-				td_platform.innerHTML=list[i].platform;  
-				td_time.innerHTML=list[i].time;  
-				td_error.innerHTML = list[i].error;
-				tr.appendChild(td_gameid);  
-				tr.appendChild(td_platform);  
-				tr.appendChild(td_time); 
-				tr.appendChild(td_error);  
+	function deleteData(did){
+		// TODO 使用post方法删除数据
+		// window.location.href = "?page=1" +"&deleteid="+did;
+	}
 
-				var tbody=document.getElementById('tbody');  
-				tbody.appendChild(tr);  
-		    }  
-		} 
+	function drawTable(list){  
+	    
+	    var dname = ["id","gameid","platform","time","error"]
+	    var tbody=document.getElementById('tbody');  
 
-			var data = <%= message[1].id %>;
-			console.log(data);
-			// drawTable(data);
+	    for(var i=0;i<list.length;i++){  
+			var tr=document.createElement('tr'); 
+
+			for (var idx in dname){
+				var td =document.createElement('td');
+				if (dname[idx] == "time"){
+					td.innerHTML=getLocalTime(list[i][dname[idx]]); 
+				}else{
+					td.innerHTML=list[i][dname[idx]]; 
+				}
+				
+				tr.appendChild(td); 
+			}
+			// 删除按钮
+			var td_delete =document.createElement('td');
+			var btn1 = document.createElement('button');
+			var t=document.createTextNode("delete");
+			btn1.appendChild(t);
+			td_delete.appendChild(btn1);
+			tr.appendChild(td_delete);
+			tbody.appendChild(tr);  
+	    }  
+	} 
+
+	var data = decodeURI('<%= message %>');
+	var d =JSON.parse(data);
+	drawTable(d);
 		
-    </script>
+		
+</script>
 
 </html>
