@@ -3,69 +3,70 @@
   <head>
     <title>错误列表</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-   
+   	<script type="text/javascript" src="/javascripts/jquery-1.11.2.min.js"></script>
   </head>
   <body>
     <h1>错误列表</h1>
     <!-- <div id="tdata" data= <%= message %></div> -->
     <table id="tbody" border="1" width="80%" align="center" style="table-layout: fixed">
-    	<tr>
-    		<td width="50px" align="center">ID</td>
-    		<td width="40" align="center">游戏ID</td>
-    		<td width="100px" align="center">平台</td>
-    		<td width="100px" align="center">时间</td>
-    		<td>错误</td>
-    		<td width="60px" align="center">删除</td>
-    	</tr>
+    	<thead>
+	    	<tr>
+	    		<th width="50px">ID</th>
+	    		<th width="40">游戏ID</th>
+	    		<th width="100px">平台</th>
+	    		<th width="100px">时间</th>
+	    		<th>错误</th>
+	    		<th width="70px">删除</th>
+	    	</tr>
+	    </thead>
+	    <tbody></tbody>
     </table>
   </body>
 
 
 <script type="text/javascript">
 
+	var page = '<%= page %>' 
+
 	function getLocalTime(nS) {     
 	   return new Date(parseInt(nS)).toLocaleString().replace(/:\d{1,2}$/,' ');     
 	}  
 
 	function deleteData(did){
-		// TODO 使用post方法删除数据
-		// window.location.href = "?page=1" +"&deleteid="+did;
+		window.location.href = "?page="+ page +"&deleteid="+did;
 	}
 
 	function drawTable(list){  
-	    
-	    var dname = ["id","gameid","platform","time","error"]
-	    var tbody=document.getElementById('tbody');  
+	    console.log(list);
+	    var dom=$("tbody");
+	    var dname = ["id","gameid","platform","time","error"];
+	    $.each(list,function(i,item){
 
-	    for(var i=0;i<list.length;i++){  
-			var tr=document.createElement('tr'); 
+		    var str="";
+		    str='<tr>'
+	    	$.each(dname,function(j,jtem){
+	    		if(jtem=="time"){
+	    			item[jtem]=getLocalTime(item[jtem]);
+	    		}
+	    		str+='<td>'+item[jtem]+'</td>';	    		
+	    	})
+	    	str+='<td><button class="delete_btn" data-id='+item.id+'>deldete</button></td>'
+	    	
+		    str+='</tr>';
+		    dom.append(str);
+	    })
 
-			for (var idx in dname){
-				var td =document.createElement('td');
-				if (dname[idx] == "time"){
-					td.innerHTML=getLocalTime(list[i][dname[idx]]); 
-				}else{
-					td.innerHTML=list[i][dname[idx]]; 
-				}
-				
-				tr.appendChild(td); 
-			}
-			// 删除按钮
-			var td_delete =document.createElement('td');
-			var btn1 = document.createElement('button');
-			var t=document.createTextNode("delete");
-			btn1.appendChild(t);
-			td_delete.appendChild(btn1);
-			tr.appendChild(td_delete);
-			tbody.appendChild(tr);  
-	    }  
+	    $('.delete_btn').click(function(){
+			var id = $(this).attr("data-id");
+			deleteData(id);
+		})
+ 
 	} 
 
 	var data = decodeURI('<%= message %>');
 	var d =JSON.parse(data);
 	drawTable(d);
-		
-		
+			
 </script>
 
 </html>

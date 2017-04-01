@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
 		// 正常查询 数据
 		EcDao.queryByPage([startIndex,count],function(err,data){
 			if (data){
-				res.render('index',{message:encodeURI(JSON.stringify(data))});
+				res.render('index',{page:pageid,message:encodeURI(JSON.stringify(data))});
 			}
 		});
 

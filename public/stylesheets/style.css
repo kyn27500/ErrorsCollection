@@ -14,3 +14,8 @@ a {
 td {
 	word-break:break-all;
 }
+
+.delete_btn {
+	padding: 0 10px;
+	height: 25px;
+}
