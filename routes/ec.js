@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
   EcDao.add(list, res, next);
   // EcDao.delete([8], res, next);
 
-  console.log(list);
+  // console.log("");
   // res.send(list);
 
 });

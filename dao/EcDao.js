@@ -15,6 +15,7 @@ var jsonWrite = function (res, ret) {
 			code:'1',
 			msg: '操作失败'
 		});
+		console.log("错误上传失败！");
 	} else {
 		res.json(ret);
 	}
@@ -30,9 +31,10 @@ module.exports = {
 					result = {
 						code: 200,
 						msg:'增加成功'
-					};    
+					};
+					console.log("错误上传成功！"); 
 				}
- 
+ 				
 				// 以json形式，把操作结果返回给前台页面
 				jsonWrite(res, result);
  
