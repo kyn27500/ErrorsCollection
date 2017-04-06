@@ -2,11 +2,20 @@
 <html>
   <head>
     <title>错误列表</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/style-page.css'/>
    	<script type="text/javascript" src="/javascripts/jquery-1.11.2.min.js"></script>
+   	<script type="text/javascript" src="/javascripts/jquery.paginate.js"></script>
   </head>
   <body>
     <h1>错误列表</h1>
+
+    <div style="margin-left:10%">
+    	按照游戏ID查询：
+    	<input type="text" name="gameid" id="gameid" value="" style="width:50px;text-align:center;font-size:20px">
+    	<button onclick="select()" style="margin-left:15px;margin-bottom:15px;width:150px;text-align:center;font-size:20px">查询</button>
+    </div>
+    
     <!-- <div id="tdata" data= <%= message %></div> -->
     <table id="tbody" border="1" width="80%" align="center" style="table-layout: fixed">
     	<thead>
@@ -21,21 +30,40 @@
 	    </thead>
 	    <tbody></tbody>
     </table>
+
+
+	<div id="page" align="center" style="margin-top:15px" </div>
+
   </body>
 
 
 <script type="text/javascript">
 
 	var page = '<%= page %>' 
+	var gameid = '<%= gameid %>' 
+	if (gameid > 0){
+		$("#gameid").val(gameid);
+	}
 
+	// 查询数据
+	function select(){
+		var gameid = $("#gameid").val();
+		if (gameid > 0){
+			window.location.href = "?gameid="+gameid+"&page=1";
+		}
+	}
+
+	// 格式化 数据
 	function getLocalTime(nS) {     
 	   return new Date(parseInt(nS)).toLocaleString().replace(/:\d{1,2}$/,' ');     
 	}  
 
+	// 删除数据
 	function deleteData(did){
 		window.location.href = "?page="+ page +"&deleteid="+did;
 	}
 
+	// 列表数据
 	function drawTable(list){  
 	    console.log(list);
 	    var dom=$("tbody");
@@ -66,7 +94,41 @@
 	var data = decodeURI('<%= message %>');
 	var d =JSON.parse(data);
 	drawTable(d);
-			
+
+
+	// 分页链接
+	function linkPage(page){
+
+		var gameid = $("#gameid").val()
+		console.log(gameid);
+		if (gameid > 0){
+			window.location.href = "?gameid="+gameid+"&page="+ page;
+		}else{
+			window.location.href = "?page="+ page;
+		}
+	}
+	//  分页
+	var pagecount = <%= pagecount%>;
+	$("#page").paginate({
+		count		: pagecount,
+		start 		: page,
+		display     : pagecount,
+		border					: true,
+		border_color			: '#fff',
+		text_color  			: '#fff',
+		background_color    	: 'black',	
+		border_hover_color		: '#ccc',
+		text_hover_color  		: '#000',
+		background_hover_color	: '#fff', 
+		images					: false,
+		mouse					: 'press',
+		onChange     			: function(page){
+									$('._current','#paginationdemo').removeClass('_current').hide();
+									$('#p'+page).addClass('_current').show();
+									linkPage(page);
+								  }
+	});
+		
 </script>
 
 </html>

@@ -56,6 +56,17 @@ module.exports = {
 	},
 
 
+	queryByPageAndGid: function (req,callback) {
+		pool.getConnection(function(err, connection) {
+			// 建立连接，删除数据
+			connection.query($sql.queryByType,req,function(err,result) {
+				callback(err,result)
+				// 释放连接 
+				connection.release();
+			});
+		});
+	},
+
 	queryByPage: function (req,callback) {
 		pool.getConnection(function(err, connection) {
 			// 建立连接，删除数据
@@ -65,6 +76,27 @@ module.exports = {
 				connection.release();
 			});
 		});
-	}
+	},
+
+	getDataCount:function(req,callback) {
+		pool.getConnection(function(err, connection) {
+			// 建立连接，删除数据
+			connection.query($sql.count,req,function(err,result) {
+				callback(err,result)
+				// 释放连接 
+				connection.release();
+			});
+		});
+	},
+	getDataCountByGid:function(req,callback) {
+		pool.getConnection(function(err, connection) {
+			// 建立连接，删除数据
+			connection.query($sql.countByGameId,req,function(err,result) {
+				callback(err,result)
+				// 释放连接 
+				connection.release();
+			});
+		});
+	},
 
 };
