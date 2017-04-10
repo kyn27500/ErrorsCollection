@@ -101,17 +101,14 @@
 		$.fn.applystyle(o,$this,a_css,hover_css,_first,_ul,_ulwrapdiv,_divwrapright);
 		//calculate width of the ones displayed:
 		var outsidewidth = outsidewidth_tmp - _first.parent().width() -3;
+		console.log(outsidewidth_tmp,outsidewidth,_first.parent().width());
 		if(ver == 'ie7'){
 			_ulwrapdiv.css('width',outsidewidth+72+'px');
 			_divwrapright.css('left',outsidewidth_tmp+6+72+'px');
 		}
 		else{
 			_ulwrapdiv.css('width',outsidewidth+'px');
-			_divwrapright.css('paddingLeft',outsidewidth_tmp/2+3+'px');
-			_divwrapright.css('left','50%');
-
-			_divwrapleft.css('left',_first.parent().width()/2+outsidewidth/2+3+'px');
-			// _divwrapleft.css('paddingRight',(-outsidewidth/2+3)+'px');
+			_divwrapright.css("left",outsidewidth_tmp+6);
 		}
 		
 		if(o.rotate){

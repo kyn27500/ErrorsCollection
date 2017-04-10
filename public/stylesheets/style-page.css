@@ -105,4 +105,11 @@ span.jPag-snext-img{
     background:transparent url(../images/snext.png) no-repeat center left;
             }
 
+.pages {
+    text-align: center;
+    padding: 25px 20px 30px 0;
+}
 
+.pages-con {
+    display: inline-block;
+}
