@@ -1,6 +1,8 @@
+*{margin: 0;padding: 0;}
 body {
   /*padding: 50px;*/
-  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-family:  "Microsoft Yahei", Helvetica, Arial, sans-serif;
   background-color: rgb(204, 232, 207)
 }
 

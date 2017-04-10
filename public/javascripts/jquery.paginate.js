@@ -101,7 +101,7 @@
 		$.fn.applystyle(o,$this,a_css,hover_css,_first,_ul,_ulwrapdiv,_divwrapright);
 		//calculate width of the ones displayed:
 		var outsidewidth = outsidewidth_tmp - _first.parent().width() -3;
-		console.log(outsidewidth_tmp,outsidewidth,_first.parent().width());
+		// console.log(outsidewidth_tmp,outsidewidth,_first.parent().width());
 		if(ver == 'ie7'){
 			_ulwrapdiv.css('width',outsidewidth+72+'px');
 			_divwrapright.css('left',outsidewidth_tmp+6+72+'px');
@@ -242,7 +242,7 @@
 						if(i == (o.display-1)){
 							outsidewidth_tmp = this.offsetLeft + this.offsetWidth ;
 						}
-						insidewidth += this.offsetWidth;
+						insidewidth += this.offsetWidth+2;
 					})
 					_ul.css('width',insidewidth+'px');
 	}

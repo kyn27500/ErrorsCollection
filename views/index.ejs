@@ -17,7 +17,7 @@
     </div>
     
     <!-- <div id="tdata" data= <%= message %></div> -->
-    <table id="tbody" border="1" width="80%" align="center" style="table-layout: fixed">
+    <table id="tbody" border="1" width="80%" align="center" style="table-layout: fixed;margin:0 auto;">
     	<thead>
 	    	<tr>
 	    		<th width="50px">ID</th>
@@ -86,7 +86,9 @@
 		    str+='</tr>';
 		    dom.append(str);
 	    })
-
+	    var pagecount = <%= pagecount%>;
+	    if(pagecount>1){pageInit(pagecount)}
+	    
 	    $('.delete_btn').click(function(){
 			var id = $(this).attr("data-id");
 			deleteData(id);
@@ -111,26 +113,28 @@
 		}
 	}
 	//  分页
-	var pagecount = <%= pagecount%>;
-	$("#page").paginate({
-		count		: pagecount,
-		start 		: page,
-		display     : pagecount,
-		border					: true,
-		border_color			: '#fff',
-		text_color  			: '#fff',
-		background_color    	: 'black',	
-		border_hover_color		: '#ccc',
-		text_hover_color  		: '#000',
-		background_hover_color	: '#fff', 
-		images					: false,
-		mouse					: 'press',
-		onChange     			: function(page){
-									$('._current','#paginationdemo').removeClass('_current').hide();
-									$('#p'+page).addClass('_current').show();
-									linkPage(page);
-								  }
-	});
+	function pageInit(pagecount){
+		// var pagecount = <%= pagecount%>;
+		$("#page").paginate({
+			count		: pagecount,
+			start 		: page,
+			display     : pagecount,
+			border					: true,
+			border_color			: '#fff',
+			text_color  			: '#fff',
+			background_color    	: 'black',	
+			border_hover_color		: '#ccc',
+			text_hover_color  		: '#000',
+			background_hover_color	: '#fff', 
+			images					: false,
+			mouse					: 'press',
+			onChange     			: function(page){
+										$('._current','#paginationdemo').removeClass('_current').hide();
+										$('#p'+page).addClass('_current').show();
+										linkPage(page);
+									  }
+		});
+	}
 		
 </script>
 
