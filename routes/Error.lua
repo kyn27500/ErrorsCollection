@@ -1,4 +1,7 @@
 -- 错误收集
+-- 使用说明：Error:init({platform="",gameid=1})，使用初始化方法，才能启动错误收集功能
+-- 文件位置：cocos/Error.lua
+-- 修改文件：cocos/init.lua,添加引用 require("cocos.Error"), 在 __G__TRACKBACK__ 方法中添加 Error:addError(msg)
 
 Error = {
 	_network  = nil,
@@ -17,6 +20,7 @@ local _errorList = {}
 -- 是否 正在发送网络
 local _isSending = false
 
+-- 初始化
 function Error:init(pdata)
 	if pdata and type(pdata)=="table" then
 		self._isWork = true
